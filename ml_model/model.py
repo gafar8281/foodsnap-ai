@@ -3,40 +3,39 @@ import cv2 as cv
 import numpy as np
 
 
-def food_ai_model(image):
-    model = tf.keras.models.load_model('/home/acer/Downloads/indian_food_model.keras')
-    # model.summary()
+def food_ai_model():
+    model = tf.keras.models.load_model(r'c:\Users\GAFAR\Downloads\food_model.keras')
 
-    # image=cv.imread(image, cv.IMREAD_COLOR_RGB)
-    img = cv.imdecode(np.frombuffer(image, dtype= np.uint8), cv.IMREAD_COLOR_RGB)    
-    image_resized = cv.resize(img, (180,180))
-    image = np.expand_dims(image_resized,axis=0)
-    # print(image.shape)
+    def predict_food_name(image):
+        # image=cv.imread(image, cv.IMREAD_COLOR_RGB)
+        img = cv.imdecode(np.frombuffer(image, dtype= np.uint8), cv.IMREAD_COLOR_RGB)    
+        image_resized = cv.resize(img, (180,180))
+        image = np.expand_dims(image_resized,axis=0)
 
-    pred = model.predict(image)
-    # print(pred)
+        pred = model.predict(image)
 
-    class_names = ['adhirasam', 'aloo_gobi', 'aloo_matar', 'aloo_methi', 'aloo_shimla_mirch', 'aloo_tikki', 'anarsa', 'ariselu', 
-                   'bandar_laddu', 'basundi', 'bhatura', 'bhindi_masala', 'biryani', 'boondi', 'butter_chicken', 'chak_hao_kheer', 
-                   'cham_cham', 'chana_masala', 'chapati', 'chhena_kheeri', 'chicken_razala', 'chicken_tikka', 'chicken_tikka_masala', 
-                   'chikki', 'daal_baati_churma', 'daal_puri', 'dal_makhani', 'dal_tadka', 'dharwad_pedha', 'doodhpak', 'dosa', 
-                   'double_ka_meetha', 'dum_aloo', 'gajar_ka_halwa', 'gavvalu', 'ghee_rice', 'ghevar', 'grilled_chicken', 'gulab_jamun', 
-                   'idli', 'imarti', 'jalebi', 'kachori', 'kadai_paneer', 'kadhi_pakoda', 'kajjikaya', 'kakinada_khaja', 'kalakand', 
-                   'karela_bharta', 'kofta', 'kuzhi_paniyaram', 'lassi', 'ledikeni', 'litti_chokha', 'lyangcha', 'maach_jhol', 
-                   'makki_di_roti_sarson_da_saag', 'malapua', 'misi_roti', 'misti_doi', 'modak', 'mysore_pak', 'naan', 'navrattan_korma', 
-                   'palak_paneer', 'paneer_butter_masala', 'phirni', 'pithe', 'poha', 'poornalu', 'pootharekulu', 'puttu', 'qubani_ka_meetha', 
-                   'rabri', 'ras_malai', 'rasgulla', 'rice', 'sandesh', 'shankarpali', 'sheer_korma', 'sheera', 'shrikhand', 'sohan_halwa', 
-                   'sohan_papdi', 'sutar_feni', 'unni_appam']
+        class_names = ['adhirasam', 'aloo matar', 'aloo shimla mirch', 'aloo tikki', 'anarsa', 'apple fruit', 'ariselu',
+                        'banana fruit', 'bandar laddu', 'basundi', 'bhatura', 'bhindi masala', 'biryani', 'boiled egg',
+                        'boiled rice', 'boondi raita', 'butter chicken', 'carrot', 'cauliflower', 'cham cham',
+                        'chana masala', 'chapati', 'cheese pizza', 'chicken stew', 'chicken tikka', 'chicken tikka masala',
+                        'chikki', 'daal baati churma', 'daal puri', 'dal makhani', 'dal tadka', 'dharwad pedha', 'doodhpak',
+                        'double ka meetha', 'dum aloo', 'fish curry', 'gajar ka halwa', 'gavvalu', 'ghee rice', 'ghevar',
+                        'gobi 65', 'gulab jamun with khoya', 'hot tea', 'idli', 'imarti', 'jalebi', 'kachori', 
+                        'kadhi pakoda', 'kajjikaya', 'kakinada khaja', 'kalakand', 'karela bharta', 'kofta', 
+                        'kuzhi paniyaram', 'lassi', 'litti chokha', 'makki ki roti', 'malapua', 'misti doi', 'modak', 
+                        'mysore pak', 'naan', 'navrattan korma', 'orange fruit', 'palak paneer', 'paneer butter masala', 
+                        'pea paneer curry', 'phirni', 'pithe', 'plain dosa', 'poha', 'poornalu', 'pootharekulu', 'rabri', 
+                        'ras malai', 'rasgulla', 'rice puttu', 'sandesh', 'shankarpali', 'sheer korma', 'sheera', 'shrikhand', 
+                        'sohan halwa', 'sohan papdi', 'tandoori chicken', 'tomatoes', 'unni appam']
 
-    output_class = class_names[np.argmax(pred)]
-    # print("The predicted class is", output_class)
-    return output_class
+
+        output_class = class_names[np.argmax(pred)]
+        return output_class
+    
+    return predict_food_name
      
 
 
-# image = '/home/acer/Downloads/archive/Indian Food Images/idli/fbbfimages.jpeg'
-
-# food_ai_model(image)
 
 
 

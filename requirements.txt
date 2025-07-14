@@ -2,3 +2,6 @@ fastapi==0.115.13
 uvicorn==0.34.3
 tensorflow==2.19.0
 opencv-python==4.11.0.86
+beautifulsoup4==4.13.4
+SQLAlchemy==2.0.41
+psycopg2==2.9.10
