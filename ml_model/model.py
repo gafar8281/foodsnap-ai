@@ -4,6 +4,19 @@ import numpy as np
 
 
 def food_ai_model():
+    """
+    Loads a pre-trained food classification model and returns a prediction function.
+
+    This function initializes a TensorFlow Keras model from a specified path.
+    It then defines and returns an inner function, `predict_food_name`, which
+    takes an image (as bytes), preprocesses it, and uses the loaded model to
+    predict the food item's name from a predefined list of classes.
+
+    Returns:
+        function: A function `predict_food_name` that takes an image (bytes)
+                and returns the predicted food name (string).
+    """
+
     model = tf.keras.models.load_model(r'c:\Users\GAFAR\Downloads\food_model.keras')
 
     def predict_food_name(image):
@@ -34,12 +47,3 @@ def food_ai_model():
     
     return predict_food_name
      
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from database import Base
+from db.database import Base
 
 class CalorieNutritionData(Base):
     __tablename__ = 'nutrition_data_project'
