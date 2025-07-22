@@ -27,8 +27,6 @@
 
 Follow the steps below to set up and run **FoodSnap AI** on your local machine.
 
----
-
 ## Tech Stack
 
 - FastAPI
