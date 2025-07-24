@@ -21,20 +21,28 @@
 -  **Robust API**  
   Exposes a well-structured `/foodsnap/v1/upload` endpoint for seamless integration.
 
+-  **Data Population (Web Scraping)**
+  Nutritional data is fetched and updated in the database using web scraping techniques.
+
+  
+
+
 ---
 
 ##  Getting Started
 
 Follow the steps below to set up and run **FoodSnap AI** on your local machine.
 
----
-
 ## Tech Stack
 
 - FastAPI
 - TensorFlow
-- OpenCV
+- ResNet50 (pre-trained model)
+- Beautiful Soup
+- Selenium
+- Pandas
 - SQLAlchemy + PostgreSQL
+
 
 ##  Installation
 
