@@ -84,6 +84,7 @@ async def fetch_data(db: db_dependency,image: UploadFile, quantity: int = Query(
     """
 
     uploaded_image = await image.read()
+    
 
     try:
         food_name = ml_models["food_classifier"](uploaded_image)
