@@ -12,7 +12,6 @@ import time
 import logging
 
 
-
 ml_models = {}
 MODEL = 'RestNet50'
 
@@ -37,7 +36,7 @@ def get_db():
         db.close()
 db_dependency = Annotated[Session, Depends(get_db)] #DEPENDENCY INJECTION
 
-# Configure basic logging
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
