@@ -7,6 +7,10 @@ from contextlib import asynccontextmanager
 from db import models
 from db.database import engine, SessionLocal
 from sqlalchemy.orm import Session
+from starlette.middleware.base import BaseHTTPMiddleware
+import time
+import logging
+
 
 
 ml_models = {}
@@ -24,7 +28,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 models.Base.metadata.create_all(bind=engine)   # CREATE TABLES
 
-
 # DB CALL
 def get_db():
     db = SessionLocal()
@@ -33,6 +36,26 @@ def get_db():
     finally:
         db.close()
 db_dependency = Annotated[Session, Depends(get_db)] #DEPENDENCY INJECTION
+
+# Configure basic logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class LoggingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        start_time = time.time()
+        
+        # Log incoming request
+        logger.info(f"➡️ {request.method} {request.url.path}")        
+        response = await call_next(request)        
+        process_time = round((time.time() - start_time) * 1000, 2)
+        
+        # Log response status and duration
+        logger.info(f"⬅️ {request.method} {request.url.path} - {response.status_code} ({process_time} ms)")        
+        return response
+
+app.add_middleware(LoggingMiddleware)
+
 
 
 # ENDPOINTS
