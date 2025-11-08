@@ -58,4 +58,7 @@ source venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Setup .env file
 
+# Run
+python main.py

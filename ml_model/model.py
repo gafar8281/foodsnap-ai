@@ -1,6 +1,7 @@
 import tensorflow as tf 
 import cv2 as cv
 import numpy as np
+from config import settings
 
 
 def food_ai_model():
@@ -17,7 +18,7 @@ def food_ai_model():
                 and returns the predicted food name (string).
     """
 
-    model = tf.keras.models.load_model(r'c:\Users\GAFAR\Downloads\food_model.keras')
+    model = tf.keras.models.load_model(settings.MODEL_PATH)
 
     def predict_food_name(image):
         # image=cv.imread(image, cv.IMREAD_COLOR_RGB)
@@ -27,7 +28,7 @@ def food_ai_model():
 
         pred = model.predict(image)
 
-        class_names = ['adhirasam', 'aloo matar', 'aloo shimla mirch', 'aloo tikki', 'anarsa', 'apple fruit', 'ariselu',
+        class_names =  ['adhirasam', 'aloo matar', 'aloo shimla mirch', 'aloo tikki', 'anarsa', 'apple fruit', 'ariselu',
                         'banana fruit', 'bandar laddu', 'basundi', 'bhatura', 'bhindi masala', 'biryani', 'boiled egg',
                         'boiled rice', 'boondi raita', 'butter chicken', 'carrot', 'cauliflower', 'cham cham',
                         'chana masala', 'chapati', 'cheese pizza', 'chicken stew', 'chicken tikka', 'chicken tikka masala',

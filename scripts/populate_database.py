@@ -4,7 +4,6 @@ import csv
 from io import StringIO
 
 
-
 def psql_insert_copy(table, conn, keys, data_iter):
     """
     Execute SQL statement inserting data
@@ -35,16 +34,22 @@ def psql_insert_copy(table, conn, keys, data_iter):
             table_name, columns)
         cur.copy_expert(sql=sql, file=s_buf)
 
-df = pd.read_csv(r'C:\Users\GAFAR\Desktop\ai-project\web_scrap\cal_data.csv')
 
-df.to_sql(
-    name= 'nutrition_data_project',
-    con= engine,
-    if_exists= 'append',
-    index= False,
-    method= psql_insert_copy
-)
+def populate_database(csv_path):
+    """Populate database with nutrition data"""
+    df = pd.read_csv(csv_path)
 
-print("DATA SAVED INTO TABLE SUCCESSFULLY !!!")
+    df.to_sql(
+        name= 'nutrition_data_project',
+        con= engine,
+        if_exists= 'append',
+        index= False,
+        method= psql_insert_copy
+    )
 
-# FASTEST METHOD TO STORE LARGE DATASET INTO DB.
+    print("DATA SAVED INTO TABLE SUCCESSFULLY !!!")
+
+# FASTEST METHOD TO STORE LARGE DATASETS INTO DB.
+if __name__ == "__main__":
+    populate_database(r'C:\Users\GAFAR\Desktop\ai-project\web_scrap\cal_data.csv')
+
