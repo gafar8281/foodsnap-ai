@@ -2,6 +2,8 @@
 
 **FoodSnap AI** is a lightweight FastAPI application that enables users to obtain nutritional information about food items by simply uploading an image. It uses a pre-trained machine learning model to classify food images and retrieves detailed macronutrient data from a connected database.
 
+[Demo video](https://drive.google.com/file/d/1Vo8tynTOMx_2JnyKSsyq6L-PYacGxWet/view?usp=drive_link)
+
 ---
 
 ##  Features
